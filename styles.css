@@ -2,8 +2,11 @@ body {
     font-family: 'Indie Flower', cursive;
     font-size: 20px;
     margin: 0;
-    padding: 1em
+    padding: 0 1em 1em 1em;
+    color: black;
 }
+
+a, a:active, a:visited { color: black }
 
 .container {
     width: 300px;
@@ -47,6 +50,7 @@ nav a {
 }
 
 .filter { visibility: hidden }
+
 .filter[id=""]:target ~ a[href="#"],
 .filter[id="tag:2"]:target ~ nav a[href="#tag:2"],
 .filter[id="tag:3"]:target ~ nav a[href="#tag:3"],
