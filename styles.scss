@@ -7,6 +7,14 @@ body {
 }
 
 a, a:active, a:visited { color: black }
+nav {
+    padding-bottom: 3em;
+
+    a {
+        padding: 0 1em;
+        text-decoration: none;
+    }
+}
 
 .container {
     width: 300px;
@@ -34,30 +42,17 @@ a, a:active, a:visited { color: black }
     }
 }
 
-
-nav {
-    padding-bottom: 3em;
-
-    a {
-        padding: 0 1em;
-        text-decoration: none;
-    }
-}
-
 .filter { visibility: hidden }
-
-.filter[id=""]:target ~ a[href="#"],
-.filter[id="tag:2"]:target ~ nav a[href="#tag:2"],
-.filter[id="tag:3"]:target ~ nav a[href="#tag:3"],
-.filter[id="tag:5"]:target ~ nav a[href="#tag:5"]{
+.tag-active {
     border-radius: 3px;
-    background-color: #f9f9f9
+    background-color: #f9f9f9;
 }
+.tag-filter-el { opacity: .1 }
+.tag-filter-active { opacity: 1 }
 
-.filter[id="tag:2"]:target ~ .container .tag-filter-el,
-.filter[id="tag:3"]:target ~ .container .tag-filter-el,
-.filter[id="tag:5"]:target ~ .container .tag-filter-el { opacity: .1 }
-
-.filter[id="tag:2"]:target ~ .container [data-tag~="2"],
-.filter[id="tag:3"]:target ~ .container [data-tag~="3"],
-.filter[id="tag:5"]:target ~ .container [data-tag~="5"] { opacity: 1 }
+.filter[id=""]:target ~ a[href="#"] { @extend .tag-active;}
+@each $tag in 2, 3, 5 {
+    .filter[id="tag:#{$tag}"]:target ~ nav a[href="#tag:#{$tag}"] { @extend .tag-active; }
+    .filter[id="tag:#{$tag}"]:target ~ .container .tag-filter-el { @extend .tag-filter-el; }
+    .filter[id="tag:#{$tag}"]:target ~ .container [data-tag~="#{$tag}"] { @extend .tag-filter-active; }
+}

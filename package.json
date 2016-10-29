@@ -1,11 +1,14 @@
 {
   "scripts": {
-    "build": "node_modules/.bin/postcss -u postcss-nested -u autoprefixer -o styles.css *.scss"
+    "serve": "python -m SimpleHTTPServer 8000",
+    "dev": "node-sass styles.scss styles.css",
+    "build": "yarn dev && node_modules/.bin/postcss -u autoprefixer -u cssnano -o styles.css styles.css"
   },
   "dependencies": {
     "autoprefixer": "^6.5.1",
+    "cssnano": "^3.8.0",
+    "node-sass": "^3.10.1",
     "postcss-cli": "^2.6.0",
-    "postcss-nested": "^1.0.0",
     "postcss-scss": "^0.3.1"
   }
 }
