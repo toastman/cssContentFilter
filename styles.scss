@@ -1,0 +1,60 @@
+body {
+    font-family: 'Indie Flower', cursive;
+    font-size: 20px;
+    margin: 0;
+    padding: 1em
+}
+
+.container {
+    width: 300px;
+    margin: 0 auto;
+    counter-reset: cube;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cube {
+    outline: 1px solid #969696;
+    width: 33%;
+    height: 100px;
+    position: relative;
+    counter-increment: cube;
+    font-size: 30px;
+    display: inline-block;
+
+    &:after {
+        content: counter(cube);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%)
+    }
+}
+
+
+nav {
+    padding-bottom: 3em;
+
+    a {
+        padding: 0 1em;
+        text-decoration: none;
+    }
+}
+
+.filter { visibility: hidden }
+
+.filter[id=""]:target ~ a[href="#"],
+.filter[id="tag:2"]:target ~ nav a[href="#tag:2"],
+.filter[id="tag:3"]:target ~ nav a[href="#tag:3"],
+.filter[id="tag:5"]:target ~ nav a[href="#tag:5"]{
+    border-radius: 3px;
+    background-color: #f9f9f9
+}
+
+.filter[id="tag:2"]:target ~ .container .tag-filter-el,
+.filter[id="tag:3"]:target ~ .container .tag-filter-el,
+.filter[id="tag:5"]:target ~ .container .tag-filter-el { opacity: .1 }
+
+.filter[id="tag:2"]:target ~ .container [data-tag~="2"],
+.filter[id="tag:3"]:target ~ .container [data-tag~="3"],
+.filter[id="tag:5"]:target ~ .container [data-tag~="5"] { opacity: 1 }
